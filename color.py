@@ -1,0 +1,12 @@
+co0= '#1e3743' # Azul
+co1= '#dfe3ee' #cinza
+co2= '#759fe6' # azul claro
+co3= '#107db2' # Azul escuro
+co4= '#ffffff' #Branco
+co5= '#108ecd' 
+co6= '#dfe3ee'
+co7= '#C6CCFF' #Gradiente
+co8= 'gray'
+co9= '#999999'
+co10= 'red'   #vermelho
+co11= 'black' #Preto
