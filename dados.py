@@ -1,49 +1,32 @@
 import sqlite3
+# conectar ao banco de dados ou criar um novo banco de dados
 
-conn= sqlite3.connect("banco_de_dados.db")
+con= sqlite3.connect('dados.db')
 
-cursor = conn.cursor()
-#Avalista#########################################################################################################
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS senha(
-            id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-            CPF TEXT NOT NULL,  
-            SENHA TEXT NOT NULL
-                )
-""")
+# Criar uma tabela de livros
+con.execute('CREATE TABLE livros(\
+                id INTEGER PRIMARY KEY,\
+                titulo TEXT,\
+                autor TEXT,\
+                editora  tEXT,\
+                ano_publicacao INTEGER,\
+                isbn TEXT)')
 
-#Aluno#######################################################################################################
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS alunos(
-            id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-            CPF NUMERIC NOT NULL,  
-            Aluno TEXT NOT NULL,
-            ENDERECO TEXT NOT NULL,
-            DDD NUMERIC NOT NULL,
-            CONTATO NUMERIC NOT NULL,
-            ANO_LETIVO TEXT NOT NULL,
-            DATA_DE_NASCIMENTO NUMERIC NOT NULL,
-            RESPONSAVEL TEXT NOT NULL
-               )
-""")
-#Notas#########################################################################################################
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS notas(
-            id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
-            ALUNO TEXT NOT NULL,
-            ANO_LETIVO TEXT NOT NULL,
-            lINGUA_PORTUGUESA NUMERIC NOT NULL,
-            lINGUA_INGLESA  NUMERIC NOT NULL, 
-            lINGUA_ESPANHOLA  NUMERIC NOT NULL,
-            MATEMATICA NUMERIC NOT NULL,
-            QUIMICA NUMERIC NOT NULL,
-            FISICA NUMERIC NOT NULL,
-            HISTORIA NUMERIC NOT NULL,
-            GEOGRAFIA NUMERIC NOT NULL,
-            CIENCIAS NUMERIC NOT NULL,
-            EDUCACAO_FISICA NUMERIC NOT NULL,
-            ARTES NUMERIC NOT NULL
-           )
-""")
+# Criando tabela de usuarios
+con.execute('CREATE TABLE usuarios(\
+                id INTEGER PRIMARY KEY,\
+                nome TEXT,\
+                sobrenome TEXT,\
+                endereco  tEXT,\
+                email TEXT,\
+                contato TEXT)')
 
-    
+# Criando tabela de emprestimo
+con.execute('CREATE TABLE emprestimos(\
+                id INTEGER PRIMARY KEY,\
+                id_livro INTEGER,\
+                id_usuario INTEGER,\
+                data_emprestimo TEXT,\
+                data_devolucao TEXT,\
+                FOREING KEY(id_livros) REFERENCES livros(id),\
+                FOREING KEY(id_usuarios) REFERENCES usuarios(id))')
